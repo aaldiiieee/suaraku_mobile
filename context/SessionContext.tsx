@@ -70,6 +70,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
             },
             onError: (error) => {
               console.error("Login failed:", error);
+              setSession(null);
             },
           });
         },

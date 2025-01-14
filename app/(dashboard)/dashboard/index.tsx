@@ -1,14 +1,20 @@
 import { Text, View, TouchableOpacity } from "react-native";
+import { UserCard } from "@/components/ui";
 import { useSession } from "@/context/SessionContext";
 
 const DashboardScreen = () => {
-    const { signOut, session } = useSession()
-    console.log(session?.user, "<-- session");
+  const { signOut, session } = useSession();
+  console.log(session?.user, "<-- session");
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <UserCard
+        name={session?.user?.mu_fullname as string}
+        phoneNumber={session?.user?.mu_phoneNumber as string}
+        nik={session?.user?.mu_nik as string}
+      />
       <TouchableOpacity onPress={signOut}>
-        <Text>{session?.user?.mu_fullname || "Loading..."}</Text>
+        <Text>Logout</Text>
       </TouchableOpacity>
     </View>
   );

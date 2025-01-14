@@ -1,4 +1,5 @@
 import { ViewStyle, KeyboardType, KeyboardTypeIOS } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export interface ButtonTypeProps {
   children: React.ReactNode;
@@ -14,4 +15,22 @@ export interface InputTypeProps {
   secureTextEntry?: boolean;
   value?: string;
   onChangeText?: (text: string) => void;
+}
+
+export interface UserCardTypeProps {
+  name: string;
+  phoneNumber: string;
+  nik: string;
+  image?: string;
+}
+
+export interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export interface MenuItem {
+  name: string;
+  icon: keyof typeof Ionicons.glyphMap;
+  route: string | undefined;
 }

@@ -1,7 +1,6 @@
 import { Input, Button } from "@/components/ui";
 import AuthTemplate from "@/components/templates/AuthTemplate";
 import { useState } from "react";
-import { useRouter } from "expo-router";
 import { useSession } from "@/context/SessionContext";
 
 const LoginScreen = () => {
@@ -10,12 +9,12 @@ const LoginScreen = () => {
 
   const { signIn } = useSession();
 
-  const router = useRouter();
-
   const handleLogin = () => {
     const loginPayload = { mu_nik: nik, mu_password: password };
+    if (!loginPayload.mu_nik || !loginPayload.mu_password) {
+      return;
+    }
     signIn(loginPayload);
-    router.push("/(dashboard)/dashboard");
   };
 
   return (
