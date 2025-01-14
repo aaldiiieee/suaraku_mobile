@@ -14,6 +14,8 @@ const Input = ({
   label,
   keyboardType,
   secureTextEntry,
+  value,
+  onChangeText,
 }: InputTypeProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -29,6 +31,8 @@ const Input = ({
         style={styles.inputStyle}
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry && !showPassword}
+        value={value}
+        onChangeText={onChangeText}
         autoFocus
       />
 

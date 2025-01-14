@@ -12,4 +12,6 @@ export interface InputTypeProps {
   label?: string;
   keyboardType?: KeyboardType;
   secureTextEntry?: boolean;
+  value?: string;
+  onChangeText?: (text: string) => void;
 }
