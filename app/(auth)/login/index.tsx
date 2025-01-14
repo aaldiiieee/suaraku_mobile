@@ -1,10 +1,23 @@
-import { Text, View } from "react-native";
+import { Input, Button } from "@/components/ui";
+import AuthTemplate from "@/components/templates/AuthTemplate";
 
 const LoginScreen = () => {
   return (
-    <View>
-      <Text>Login Screen</Text>
-    </View>
+    <AuthTemplate>
+      <Input
+        placeholder="Nomor Induk Kependudukan (NIK)"
+        keyboardType="number-pad"
+      />
+      <Input placeholder="Nomor Handphone" keyboardType="number-pad" />
+      <Input placeholder="Password" keyboardType="default" secureTextEntry />
+      <Button
+        background="primary"
+        onPress={() => console.log("Login Pressed")}
+        style={{ width: 348 }}
+      >
+        Masuk
+      </Button>
+    </AuthTemplate>
   );
 };
 

@@ -6,7 +6,7 @@ import {
   ImageBackground,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import Button from "@/components/ui/button/Button";
+import { Button } from "@/components/ui";
 import { useRouter } from "expo-router";
 
 export default function index() {

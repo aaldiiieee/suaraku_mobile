@@ -45,14 +45,12 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
-    marginRight: 10,
   },
   buttonSecondary: {
     backgroundColor: "#ffffff",
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
-    marginRight: 10,
   },
   buttonTransparent: {
     backgroundColor: "transparent",
@@ -61,14 +59,12 @@ const styles = StyleSheet.create({
     borderColor: "#ffffff",
     borderWidth: 1,
     borderRadius: 8,
-    marginRight: 10,
   },
   buttonDisabled: {
     backgroundColor: "#ccc",
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
-    marginRight: 10,
   },
   textPrimary: {
     color: "#ffffff",
