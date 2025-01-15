@@ -1,6 +1,7 @@
 export interface Session {
   user: User | null;
   token: string | null;
+  expiresAt: string;
 //   login: (user: User, token: string) => void;
 }
 

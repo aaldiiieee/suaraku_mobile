@@ -17,6 +17,10 @@ const AuthContext = createContext<{
   isLoading: false,
 });
 
+function isTokenExpired(expiresAt: string): boolean {
+  return new Date(expiresAt).getTime() <= new Date().getTime();
+}
+
 export function useSession() {
   const value = useContext(AuthContext);
   if (process.env.NODE_ENV !== "production") {
@@ -47,8 +51,14 @@ export function SessionProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     if (!isLoading) {
       if (sessionData) {
-        setSession(sessionData);
-        router.replace("/(dashboard)/dashboard");
+        if (sessionData.expiresAt && isTokenExpired(sessionData.expiresAt)) {
+          console.warn("Session expired. Signing out.");
+          setSession(null);
+          router.replace("/");
+        } else {
+          setSession(sessionData);
+          router.replace("/(dashboard)/dashboard");
+        }
       } else {
         router.replace("/");
       }
@@ -65,6 +75,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
               const newSession: Session = {
                 user: userData,
                 token: userData.token,
+                expiresAt: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
               };
               setSession(JSON.stringify(newSession));
             },
