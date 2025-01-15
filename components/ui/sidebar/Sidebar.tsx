@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
@@ -9,8 +10,22 @@ import {
   Animated,
   StyleSheet,
 } from "react-native";
+import Button from "../button/Button";
+import { useSession } from "@/context/SessionContext";
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+  const { signOut } = useSession();
+
+  const translateX = useRef(new Animated.Value(-300)).current;
+
+  useEffect(() => {
+    Animated.timing(translateX, {
+      toValue: isOpen ? 0 : -300,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  }, [isOpen]);
+
   const menuItems: MenuItem[] = [
     { name: "Dashboard", icon: "home-outline", route: "/dashboard" },
     { name: "User", icon: "person-outline", route: "/user" },
@@ -21,11 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       style={[
         styles.sidebar,
         {
-          transform: [
-            {
-              translateX: isOpen ? 0 : -300,
-            },
-          ],
+          transform: [{ translateX }],
         },
       ]}
     >
@@ -33,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         <View style={styles.sidebarHeader}>
           <Text style={styles.sidebarTitle}>Menu</Text>
           <TouchableOpacity onPress={onClose}>
-            <Ionicons name="close" size={24} color="#000" />
+            <Ionicons name="close" size={24} color="#345FCB" />
           </TouchableOpacity>
         </View>
 
@@ -51,13 +62,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           </TouchableOpacity>
         ))}
 
-        <View style={{ position: "absolute", bottom: 50, left: 50 }}>
-          <TouchableOpacity
-            onPress={() => console.log("Logout")}
-          >
-            <Ionicons name="log-out" size={24} color="#fff" />
-            <Text>Logout</Text>
-          </TouchableOpacity>
+        <View style={{ position: "absolute", bottom: 50, left: 20 }}>
+          <Button background="danger" style={{ width: 242 }} onPress={signOut}>
+            Keluar Akun
+          </Button>
         </View>
       </SafeAreaView>
     </Animated.View>

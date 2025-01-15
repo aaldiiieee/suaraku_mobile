@@ -12,6 +12,8 @@ const Button = ({ children, background, style, onPress }: ButtonTypeProps) => {
         return styles.buttonTransparent;
       case "disabled":
         return styles.buttonDisabled;
+      case "danger":
+        return styles.buttonDanger;
       default:
         return styles.buttonPrimary;
     }
@@ -33,61 +35,51 @@ const Button = ({ children, background, style, onPress }: ButtonTypeProps) => {
   };
 
   return (
-    <TouchableOpacity style={[getButtonStyle(), style]} onPress={onPress}>
-      <Text style={getTextStyle()}>{children}</Text>
+    <TouchableOpacity style={[getButtonStyle(), style, styles.button]} onPress={onPress}>
+      <Text style={[getTextStyle(), styles.buttonText]}>{children}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonPrimary: {
-    backgroundColor: "#345FCB",
+  button: {
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
+  },
+  buttonPrimary: {
+    backgroundColor: "#345FCB",
   },
   buttonSecondary: {
     backgroundColor: "#ffffff",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
   },
   buttonTransparent: {
     backgroundColor: "transparent",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
     borderColor: "#ffffff",
     borderWidth: 1,
-    borderRadius: 8,
   },
   buttonDisabled: {
     backgroundColor: "#ccc",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
+  },
+  buttonDanger: {
+    backgroundColor: "#FF0000",
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
   },
   textPrimary: {
     color: "#ffffff",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
   },
   textSecondary: {
     color: "#345FCB",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
   },
   textDisabled: {
     color: "#A9A9A9",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
   },
   textTransparent: {
     color: "#ffffff",
-    fontSize: 16,
-    textAlign: "center",
   },
 });
 

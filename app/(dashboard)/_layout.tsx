@@ -21,7 +21,7 @@ export default function TabLayout() {
               onPress={toggleSidebar}
               style={{ marginLeft: 16 }}
             >
-              <Ionicons name="menu" size={24} color="#000" />
+              <Ionicons name="menu" size={24} color="#345FCB" />
             </TouchableOpacity>
           ),
           tabBarStyle: Platform.select({

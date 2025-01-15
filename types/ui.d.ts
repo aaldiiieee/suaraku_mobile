@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 export interface ButtonTypeProps {
   children: React.ReactNode;
-  background?: "primary" | "secondary" | "transparent" | "disabled";
+  background?: "primary" | "secondary" | "transparent" | "disabled" | "danger";
   style?: ViewStyle;
   onPress: () => void;
 }
