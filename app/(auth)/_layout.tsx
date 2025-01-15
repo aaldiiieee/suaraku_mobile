@@ -7,6 +7,10 @@ export default function AuthLayout() {
         name="login/index"
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="verify-pin/index"
+        options={{ headerShown: false }}
+      />
     </Stack>
   );
 }

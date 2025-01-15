@@ -49,21 +49,35 @@ export function SessionProvider({ children }: PropsWithChildren) {
   }
 
   useEffect(() => {
-    if (!isLoading) {
-      if (sessionData) {
-        if (sessionData.expiresAt && isTokenExpired(sessionData.expiresAt)) {
-          console.warn("Session expired. Signing out.");
-          setSession(null);
-          router.replace("/");
-        } else {
-          setSession(sessionData);
-          router.replace("/(dashboard)/dashboard");
-        }
-      } else {
+    if (isLoading) return;
+  
+    const handleSession = () => {
+      if (!sessionData) {
         router.replace("/");
+        return;
       }
-    }
+
+      if (sessionData.user.mu_pin !== null) {
+        router.replace("/(auth)/verify-pin");
+        return;
+      } else {
+        router.replace("/(dashboard)/dashboard");
+      }
+      
+      if (sessionData.expiresAt && isTokenExpired(sessionData.expiresAt)) {
+        console.warn("Session expired. Signing out.");
+        setSession(null);
+        router.replace("/");
+        return;
+      }
+  
+      setSession(sessionData);
+      router.replace("/(dashboard)/dashboard");
+    };
+  
+    handleSession();
   }, [isLoading, sessionData, router]);
+  
 
   return (
     <AuthContext.Provider

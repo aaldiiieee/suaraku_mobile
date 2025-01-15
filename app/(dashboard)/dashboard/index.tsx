@@ -4,7 +4,6 @@ import { useSession } from "@/context/SessionContext";
 
 const DashboardScreen = () => {
   const { signOut, session } = useSession();
-  console.log(session?.user, "<-- session");
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

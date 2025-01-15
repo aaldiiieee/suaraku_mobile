@@ -1,5 +1,5 @@
 import callSuarakuApi from "@/helper/api";
-import { LoginPayload } from "@/types/payload";
+import { LoginPayload, PinPayload } from "@/types/payload";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /**
@@ -19,6 +19,24 @@ export const logout = async () => {};
 export const register = async () => {};
 
 /**
+ * Authenticate using a PIN.
+ *
+ * @param {PinPayload} payload - Object containing the user's NIK and PIN.
+ * @returns {Promise<any>} - The response data from the authentication request.
+ * @throws {Error} - If the request fails.
+ */
+
+export const authPin = async (payload: PinPayload) => {
+  const response = await callSuarakuApi.post("/auth/pin", payload);
+  return response.data;
+};
+
+export const registerPin = async (payload: PinPayload) => {
+  const response = await callSuarakuApi.post("/auth/register-pin", payload);
+  return response.data;
+};
+
+/**
  * Manage the authentication token to async storage.
  *
  * @param {string} token - The authentication token to be saved.
@@ -28,7 +46,6 @@ export const register = async () => {};
 
 export const saveToken = async (token: string): Promise<void> => {
   try {
-
     await AsyncStorage.setItem("authToken", token);
     console.log("Token saved:", token);
   } catch (error) {
