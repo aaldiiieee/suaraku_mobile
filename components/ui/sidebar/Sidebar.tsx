@@ -12,7 +12,7 @@ import {
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const menuItems: MenuItem[] = [
-    { name: "Dashboard", icon: "home", route: "/dashboard" },
+    { name: "Dashboard", icon: "home-outline", route: "/dashboard" },
     { name: "User", icon: "person-outline", route: "/user" },
   ];
 

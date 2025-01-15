@@ -34,3 +34,16 @@ export interface MenuItem {
   icon: keyof typeof Ionicons.glyphMap;
   route: string | undefined;
 }
+
+export interface UserDetailCardProps {
+  user: {
+    nik: string;
+    name: string;
+    phoneNumber: string;
+    bloodType: string;
+    address: string;
+    province: string;
+    city: string;
+    district: string;
+  };
+}

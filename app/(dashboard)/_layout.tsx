@@ -37,7 +37,7 @@ export default function TabLayout() {
             title: "",
             headerTitle: "Dashboard",
             tabBarIcon: ({ color }: { color: string }) => (
-              <Ionicons name="home" size={30} color={color} />
+              <Ionicons name="home-outline" size={30} color={color} />
             ),
           }}
         />
