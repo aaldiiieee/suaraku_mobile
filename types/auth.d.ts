@@ -9,6 +9,7 @@ export interface User {
   mu_id: number;
   mu_uuid: string;
   mu_nik: string;
+  mu_avatar_url: string;
   mu_fullname: string;
   mu_phoneNumber: string;
   mu_blood_type: string;

@@ -1,19 +1,15 @@
-import { useState } from "react";
+import React from "react";
 import { Modal, Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { ModalTypeProps } from "@/types/ui";
 
-const ModalComponent = () => {
-  const [visible, setVisible] = useState(true);
-
+const ModalComponent = ({ visible, onClose, title, message }: ModalTypeProps) => {
   return (
-    <Modal visible={visible} transparent={true}>
+    <Modal visible={visible} transparent={true} animationType="fade">
       <View style={styles.modalContainer}>
         <View style={styles.alertContainer}>
-          <Text style={styles.title}>Alert Title</Text>
-          <Text style={styles.message}>Alert message</Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => setVisible(false)}
-          >
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.message}>{message}</Text>
+          <TouchableOpacity style={styles.button} onPress={onClose}>
             <Text style={styles.buttonText}>OK</Text>
           </TouchableOpacity>
         </View>
@@ -33,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 10,
     padding: 20,
+    alignItems: "center",
   },
   title: {
     fontSize: 18,
@@ -42,6 +39,7 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 16,
     marginBottom: 20,
+    textAlign: "center",
   },
   button: {
     backgroundColor: "#007bff",

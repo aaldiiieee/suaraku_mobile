@@ -1,7 +1,14 @@
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import { ButtonTypeProps } from "@/types/ui";
 
-const Button = ({ children, background, style, onPress }: ButtonTypeProps) => {
+const Button = ({
+  children,
+  background,
+  style,
+  shadow,
+  shadowColor,
+  onPress,
+}: ButtonTypeProps) => {
   const getButtonStyle = () => {
     switch (background) {
       case "primary":
@@ -35,7 +42,13 @@ const Button = ({ children, background, style, onPress }: ButtonTypeProps) => {
   };
 
   return (
-    <TouchableOpacity style={[getButtonStyle(), style, styles.button]} onPress={onPress}>
+    <TouchableOpacity
+      style={[
+        getButtonStyle(), style, styles.button, 
+        shadow && { boxShadow: `0px 4px 10px 0px ${shadowColor}` }
+      ]}
+      onPress={onPress}
+    >
       <Text style={[getTextStyle(), styles.buttonText]}>{children}</Text>
     </TouchableOpacity>
   );

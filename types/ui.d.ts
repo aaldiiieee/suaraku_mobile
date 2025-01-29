@@ -4,6 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 export interface ButtonTypeProps {
   children: React.ReactNode;
   background?: "primary" | "secondary" | "transparent" | "disabled" | "danger";
+  shadow?: boolean;
+  shadowColor?: string;
   style?: ViewStyle;
   onPress: () => void;
 }
@@ -21,7 +23,9 @@ export interface UserCardTypeProps {
   name: string;
   phoneNumber: string;
   nik: string;
+  avatar: string
   image?: string;
+  onAvatarChange?: (uri: string) => void
 }
 
 export interface SidebarProps {
@@ -46,4 +50,11 @@ export interface UserDetailCardProps {
     city: string;
     district: string;
   };
+}
+
+export interface ModalTypeProps {
+  visible: boolean;
+  title: string;
+  message: string;
+  onClose: () => void;
 }

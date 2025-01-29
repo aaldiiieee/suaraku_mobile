@@ -1,13 +1,43 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import { UserCardTypeProps } from "@/types/ui";
+import { Ionicons } from "@expo/vector-icons";
 
-const UserCard = ({ name, phoneNumber, nik }: UserCardTypeProps) => {
+const UserCard = ({
+  name,
+  phoneNumber,
+  nik,
+  avatar,
+  onAvatarChange,
+}: UserCardTypeProps) => {
+  const handleEditPhoto = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled && result.assets) {
+      if (onAvatarChange) onAvatarChange(result.assets[0].uri);
+    }
+  };
+
   return (
     <View style={styles.cardBody}>
-      <Image
-        source={require("@/assets/images/user-blank.png")}
-        style={{ width: 45, height: 45, borderRadius: 100 }}
-      />
+      <View style={{ position: "relative" }}>
+        <Image
+          source={
+            avatar ? { uri: avatar } : require("@/assets/images/user-blank.png")
+          }
+          style={{ width: 50, height: 50, borderRadius: 100 }}
+        />
+        {onAvatarChange && (
+          <TouchableOpacity style={{ position: "absolute", bottom: 5, right: 0 }} onPress={handleEditPhoto}>
+            <Ionicons name="camera-outline" size={20} color="black" />
+          </TouchableOpacity>
+        )}
+      </View>
       <View style={{ display: "flex", flexDirection: "column", gap: 3 }}>
         <Text style={{ fontWeight: "bold", marginBottom: 5 }}>{name}</Text>
         <Text>{phoneNumber}</Text>
@@ -31,7 +61,6 @@ const styles = StyleSheet.create({
     elevation: 5,
     display: "flex",
     flexDirection: "row",
-    // alignItems: "center",
     gap: 20,
   },
 });

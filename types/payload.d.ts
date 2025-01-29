@@ -7,3 +7,8 @@ export interface PinPayload {
   mu_nik: string;
   mu_pin: string;
 }
+
+export interface UpdatePhotoPayload {
+  mu_uuid: string;
+  mu_avatar_url: string;
+}

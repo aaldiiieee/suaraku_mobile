@@ -24,6 +24,15 @@ export default function TabLayout() {
               <Ionicons name="menu" size={24} color="#345FCB" />
             </TouchableOpacity>
           ),
+          headerRight: () => (
+            <TouchableOpacity style={{ marginRight: 16 }}>
+              <Ionicons
+                name="notifications-outline"
+                size={24}
+                color="#345FCB"
+              />
+            </TouchableOpacity>
+          ),
           tabBarStyle: Platform.select({
             ios: {
               position: "absolute",
@@ -45,7 +54,7 @@ export default function TabLayout() {
           name="user/index"
           options={{
             title: "",
-            headerTitle: "User",
+            headerTitle: "Profile Saya",
             tabBarIcon: ({ color }: { color: string }) => (
               <Ionicons name="person-outline" size={30} color={color} />
             ),

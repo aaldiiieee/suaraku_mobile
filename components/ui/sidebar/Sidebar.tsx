@@ -29,6 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const menuItems: MenuItem[] = [
     { name: "Dashboard", icon: "home-outline", route: "/dashboard" },
     { name: "User", icon: "person-outline", route: "/user" },
+    { name: "Pengaturan & Privasi", icon: "settings-outline", route: "/settings-and-privacy" },
   ];
 
   return (
@@ -63,7 +64,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         ))}
 
         <View style={{ position: "absolute", bottom: 50, left: 20 }}>
-          <Button background="danger" style={{ width: 242 }} onPress={signOut}>
+          <Button background="danger" style={{ width: 242 }} onPress={signOut} shadow shadowColor="#DF3434">
             Keluar Akun
           </Button>
         </View>
